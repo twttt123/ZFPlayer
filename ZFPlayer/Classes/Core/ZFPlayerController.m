@@ -45,6 +45,8 @@ static NSMutableDictionary <NSString* ,NSNumber *> *_zfPlayRecords;
 @property (nonatomic, assign) BOOL isSmallFloatViewShow;
 /// The indexPath is playing.
 @property (nonatomic, nullable) NSIndexPath *playingIndexPath;
+@property (nonatomic,assign) BOOL isFullLocked;
+
 
 @end
 
@@ -268,6 +270,12 @@ static NSMutableDictionary <NSString* ,NSNumber *> *_zfPlayRecords;
             if (self.pauseWhenAppResignActive && self.currentPlayerManager.isPlaying) {
                 self.pauseByEvent = YES;
             }
+            if (self.orientationObserver.lockedScreen == true) {
+                self.isFullLocked = true;
+            }
+            else{
+                self.isFullLocked = false;
+            }
             self.orientationObserver.lockedScreen = YES;
             [[UIApplication sharedApplication].keyWindow endEditing:YES];
             if (!self.pauseWhenAppResignActive) {
@@ -279,7 +287,12 @@ static NSMutableDictionary <NSString* ,NSNumber *> *_zfPlayRecords;
             @zf_strongify(self)
             if (self.isViewControllerDisappear) return;
             if (self.isPauseByEvent) self.pauseByEvent = NO;
-            self.orientationObserver.lockedScreen = NO;
+            if (self.orientationObserver.lockedScreen == true) {
+            }
+            else{
+                self.orientationObserver.lockedScreen = NO;
+            }
+           
         };
         _notification.oldDeviceUnavailable = ^(ZFPlayerNotification * _Nonnull registrar) {
             @zf_strongify(self)
