@@ -287,9 +287,7 @@ static NSMutableDictionary <NSString* ,NSNumber *> *_zfPlayRecords;
             @zf_strongify(self)
             if (self.isViewControllerDisappear) return;
             if (self.isPauseByEvent) self.pauseByEvent = NO;
-            if (self.orientationObserver.lockedScreen == true) {
-            }
-            else{
+            if (self.isFullLocked == false) {
                 self.orientationObserver.lockedScreen = NO;
             }
            
