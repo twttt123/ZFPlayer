@@ -73,6 +73,9 @@ static NSString *const kPresentationSize         = @"presentationSize";
 - (void)setVideoGravity:(AVLayerVideoGravity)videoGravity {
     if (videoGravity == self.videoGravity) return;
     [self avLayer].videoGravity = videoGravity;
+    CGRect bounds = self.layer.bounds;
+    self.layer.bounds = CGRectZero;
+    self.layer.bounds = bounds;
 }
 
 - (AVLayerVideoGravity)videoGravity {
