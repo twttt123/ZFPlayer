@@ -207,6 +207,12 @@
 - (void)playOrPause {
     self.playOrPauseBtn.selected = !self.playOrPauseBtn.isSelected;
     self.playOrPauseBtn.isSelected? [self.player.currentPlayerManager play]: [self.player.currentPlayerManager pause];
+    
+    if (self.playOrPauseBtn.isSelected == true) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.05), dispatch_get_main_queue(), ^{
+            !self.needRefresh? : self.needRefresh();
+        });
+    }
 }
 
 - (void)playBtnSelectedState:(BOOL)selected {
