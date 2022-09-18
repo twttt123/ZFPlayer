@@ -14,7 +14,7 @@
 
 [中文说明](https://www.jianshu.com/p/90e55deb4d51)
 
-[ZFPlayer 4.x迁移指南](https://github.com/renzifeng/ZFPlayer/wiki/ZFPlayer-4.x%E8%BF%81%E7%A7%BB%E6%8C%87%E5%8D%97)
+[ZFPlayer 转屏适配](https://github.com/renzifeng/ZFPlayer/wiki/%E8%BD%AC%E5%B1%8F%E9%80%82%E9%85%8D)
 
 
 Before this, you used ZFPlayer, are you worried about encapsulating avplayer instead of using or modifying the source code to support other players, the control layer is not easy to customize, and so on? In order to solve these problems, I have wrote this player template, for player SDK you can conform the `ZFPlayerMediaPlayback` protocol, for control view you can conform the `ZFPlayerMediaControl` protocol, can custom the player and control view.
@@ -106,21 +106,12 @@ player.controlView = controlView;
 
 ![](https://upload-images.jianshu.io/upload_images/635942-a9fbbb2710de8eff.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## ❤️ Contributors
-
-林界：https://github.com/GeekLee609
-
 
 ## 🙋🏻‍♂️🙋🏻‍♀️寻求志同道合的小伙伴
 
 - 现寻求志同道合的小伙伴一起维护此框架，有兴趣的小伙伴可以[发邮件](zifeng1300@gmail.com)给我，非常感谢！
 - 如果一切OK，我将开放框架维护权限（github、pod等）
 
-## 💰 打赏作者
-
-如果ZFPlayer在开发中有帮助到你、如果你需要技术支持或者你需要定制功能，都可以拼命打赏我！
-
-![支付.jpg](https://upload-images.jianshu.io/upload_images/635942-b9b836cfbb7a5e44.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ## 👮🏻 License
