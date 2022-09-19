@@ -79,9 +79,14 @@
         min_h = playerViewSize.height;
         min_x = (min_view_w - min_w) / 2.0;
         min_y = (min_view_h - min_h) / 2.0;
-        self.playerView.frame = CGRectMake(min_x, min_y, min_w, min_h);
+        if (!self.isRecommendPlay) {
+            self.playerView.frame = CGRectMake(min_x, min_y, min_w, min_h);
+        }
+        
     } else if (self.scalingMode == ZFPlayerScalingModeAspectFill || self.scalingMode == ZFPlayerScalingModeFill) {
-        self.playerView.frame = self.bounds;
+        if (!self.isRecommendPlay) {
+            self.playerView.frame = self.bounds;
+        }
     }
     self.coverImageView.frame = self.playerView.frame;
 }

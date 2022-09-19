@@ -39,4 +39,7 @@
 /// The cover for playerView.
 @property (nonatomic, strong, readonly) UIImageView *coverImageView;
 
+@property (nonatomic,assign) BOOL isRecommendPlay;
+
+
 @end
