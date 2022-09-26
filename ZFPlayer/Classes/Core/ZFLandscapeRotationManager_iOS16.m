@@ -24,8 +24,6 @@
 
 #import "ZFLandscapeRotationManager_iOS16.h"
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 160000
-
 @implementation ZFLandscapeRotationManager_iOS16
 @synthesize landscapeViewController = _landscapeViewController;
 
@@ -38,8 +36,13 @@
 
 - (void)setNeedsUpdateOfSupportedInterfaceOrientations {
     if (@available(iOS 16.0, *)) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 160000
         [UIApplication.sharedApplication.keyWindow.rootViewController setNeedsUpdateOfSupportedInterfaceOrientations];
         [self.window.rootViewController setNeedsUpdateOfSupportedInterfaceOrientations];
+#else
+        [(id)UIApplication.sharedApplication.keyWindow.rootViewController setNeedsUpdateOfSupportedInterfaceOrientations];
+        [(id)self.window.rootViewController setNeedsUpdateOfSupportedInterfaceOrientations];
+#endif
     }
 }
 
@@ -55,7 +58,7 @@
     CGFloat minSize = MIN(screenBounds.size.width, screenBounds.size.height);
   
     self.contentView.autoresizingMask = UIViewAutoresizingNone;
-    if (fromOrientation == UIInterfaceOrientationPortrait) {
+    if (fromOrientation == UIInterfaceOrientationPortrait || self.contentView.superview != self.landscapeViewController.view) {
         self.contentView.frame = sourceFrame;
         [sourceWindow addSubview:self.contentView];
         [self.contentView layoutIfNeeded];
@@ -79,7 +82,7 @@
     
     if (UIInterfaceOrientationIsLandscape(toOrientation)) {
         rotationBounds = CGRectMake(0, 0, maxSize, minSize);
-        rotationCenter = fromOrientation == UIInterfaceOrientationPortrait ? CGPointMake(minSize * 0.5,  maxSize * 0.5): CGPointMake(maxSize * 0.5, minSize * 0.5);
+        rotationCenter = (fromOrientation == UIInterfaceOrientationPortrait || self.contentView.superview != self.landscapeViewController.view) ? CGPointMake(minSize * 0.5,  maxSize * 0.5): CGPointMake(maxSize * 0.5, minSize * 0.5);
     }
     
     // transform
@@ -142,4 +145,3 @@
 }
 
 @end
-#endif
