@@ -369,8 +369,6 @@
         if (self.controlViewAppeared) {
             [self hideControlViewWithAnimated:YES];
         } else {
-            /// 显示之前先把控制层复位，先隐藏后显示
-            [self hideControlViewWithAnimated:NO];
             [self showControlViewWithAnimated:YES];
         }
     }
@@ -450,6 +448,10 @@
     } else {
         self.player.currentPlayerManager.scalingMode = ZFPlayerScalingModeAspectFit;
     }
+}
+
+- (void)longPressed:(ZFPlayerGestureControl *)gestureControl state:(ZFLongPressGestureRecognizerState)state {
+    
 }
 
 /// 准备播放
@@ -548,15 +550,7 @@
     } else {
         [self.volumeBrightnessView addSystemVolumeView];
     }
-}
-
-/// 视频view已经旋转
-- (void)videoPlayer:(ZFPlayerController *)videoPlayer orientationDidChanged:(ZFOrientationObserver *)observer {
-    if (self.controlViewAppeared) {
-        [self showControlViewWithAnimated:NO];
-    } else {
-        [self hideControlViewWithAnimated:NO];
-    }
+    [self.landScapeControlView videoPlayer:videoPlayer orientationWillChange:observer];
 }
 
 /// 锁定旋转方向
@@ -670,6 +664,11 @@
     self.portraitControlView.fullScreenMode = fullScreenMode;
     self.landScapeControlView.fullScreenMode = fullScreenMode;
     self.player.orientationObserver.fullScreenMode = fullScreenMode;
+}
+
+- (void)setShowCustomStatusBar:(BOOL)showCustomStatusBar {
+    _showCustomStatusBar = showCustomStatusBar;
+    self.landScapeControlView.showCustomStatusBar = showCustomStatusBar;
 }
 
 #pragma mark - getter

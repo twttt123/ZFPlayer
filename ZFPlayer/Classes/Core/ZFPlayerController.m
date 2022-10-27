@@ -539,6 +539,7 @@ static NSMutableDictionary <NSString* ,NSNumber *> *_zfPlayRecords;
         [self.currentPlayerManager stop];
         [self.currentPlayerManager.view removeFromSuperview];
     }
+    self.lockedScreen = NO;
     if (self.scrollView) self.scrollView.zf_stopPlay = YES;
     [self.notification removeNotification];
     [self.orientationObserver removeDeviceOrientationObserver];
@@ -1064,6 +1065,13 @@ static NSMutableDictionary <NSString* ,NSNumber *> *_zfPlayRecords;
             @zf_strongify(self)
             if ([self.controlView respondsToSelector:@selector(gesturePinched:scale:)]) {
                 [self.controlView gesturePinched:control scale:scale];
+            }
+        };
+        
+        gestureControl.longPressed = ^(ZFPlayerGestureControl * _Nonnull control, ZFLongPressGestureRecognizerState state) {
+            @zf_strongify(self)
+            if ([self.controlView respondsToSelector:@selector(longPressed:state:)]) {
+                [self.controlView longPressed:control state:state];
             }
         };
         objc_setAssociatedObject(self, _cmd, gestureControl, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

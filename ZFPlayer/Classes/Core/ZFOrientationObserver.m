@@ -145,16 +145,6 @@
     [self.landscapeRotationManager handleDeviceOrientationChange];
 }
 
-- (UIInterfaceOrientation)getCurrentOrientation {
-    if (@available(iOS 16.0, *)) {
-        NSArray *array = [[[UIApplication sharedApplication] connectedScenes] allObjects];
-        UIWindowScene *scene = [array firstObject];
-        return scene.interfaceOrientation;
-    } else {
-        return (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
-    }
-}
-
 #pragma mark - public
 
 - (void)rotateToOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated {
@@ -257,11 +247,18 @@
 
 - (UIView *)fullScreenContainerView {
     if (self.fullScreenMode == ZFFullScreenModeLandscape) {
-        return self.landscapeRotationManager.landscapeViewController.view;
+        return self.landscapeRotationManager.fullScreenContainerView;
     } else if (self.fullScreenMode == ZFFullScreenModePortrait) {
         return self.portraitViewController.view;
     }
     return nil;
+}
+
+- (UIInterfaceOrientation)currentOrientation {
+    if (self.fullScreenMode == ZFFullScreenModeLandscape) {
+        return self.landscapeRotationManager.currentOrientation;
+    }
+    return [self.landscapeRotationManager getCurrentOrientation];
 }
 
 #pragma mark - setter
