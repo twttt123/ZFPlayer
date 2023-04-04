@@ -27,7 +27,8 @@ typedef NS_ENUM(NSUInteger, ZFPlayerPlaybackState) {
     ZFPlayerPlayStatePlaying,
     ZFPlayerPlayStatePaused,
     ZFPlayerPlayStatePlayFailed,
-    ZFPlayerPlayStatePlayStopped
+    ZFPlayerPlayStatePlayStopped,
+    ZFPlayerPlayStatePlayComplete
 };
 
 typedef NS_OPTIONS(NSUInteger, ZFPlayerLoadState) {
