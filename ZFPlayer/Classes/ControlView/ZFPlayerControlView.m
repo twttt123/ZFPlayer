@@ -376,11 +376,11 @@
 
 /// 双击手势事件
 - (void)gestureDoubleTapped:(ZFPlayerGestureControl *)gestureControl {
-//    if (self.player.isFullScreen) {
-//        [self.landScapeControlView playOrPause];
-//    } else {
-//        [self.portraitControlView playOrPause];
-//    }
+    if (self.player.isFullScreen) {
+        [self.landScapeControlView playOrPause];
+    } else {
+        [self.portraitControlView playOrPause];
+    }
 }
 
 /// 开始滑动手势事件
