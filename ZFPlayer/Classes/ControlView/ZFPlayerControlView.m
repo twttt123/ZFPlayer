@@ -379,7 +379,7 @@
     if (self.player.isFullScreen) {
         [self.landScapeControlView playOrPause];
     } else {
-        [self.portraitControlView playOrPause];
+      //  [self.portraitControlView playOrPause];
     }
 }
 
