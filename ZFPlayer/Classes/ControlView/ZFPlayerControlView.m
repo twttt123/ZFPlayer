@@ -377,9 +377,10 @@
 /// 双击手势事件
 - (void)gestureDoubleTapped:(ZFPlayerGestureControl *)gestureControl {
     if (self.player.isFullScreen) {
-        [self.landScapeControlView playOrPause];
+        [self.player enterFullScreen:false animated:YES];
     } else {
       //  [self.portraitControlView playOrPause];
+        [self.player enterFullScreen:true animated:YES];
     }
 }
 
