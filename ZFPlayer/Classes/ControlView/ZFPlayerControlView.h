@@ -116,6 +116,10 @@
 /// 全屏模式
 @property (nonatomic, assign) ZFFullScreenMode fullScreenMode;
 
+
+/// 隐藏控制层
+- (void)hideControlViewWithAnimated:(BOOL)animated;
+
 /**
  设置标题、封面、全屏模式
 
